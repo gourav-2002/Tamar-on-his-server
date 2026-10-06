@@ -63,13 +63,9 @@ const Hero = () => {
             <span className="text-[#dbbc65] font-sans font-bold text-xl md:text-xl uppercase tracking-[0.2em] block mb-6">
               IF YOU SERVED - YOU DESERVE
             </span>
-            <h1 className="text-white font-serif font-bold text-4xl md:text-6xl leading-[1.1] mb-2">
-              You Served Your Country.
+            <h1 className="text-white font-serif font-bold text-4xl md:text-5xl leading-[1.2] mb-8">
+              You Served Your Country. You Do Not Have to Navigate the VA Alone.
             </h1>
-
-            <h2 className="text-[#dbbc65] font-serif font-bold text-3xl md:text-5xl leading-tight mb-8">
-              You Do Not Have to Navigate the VA Alone.
-            </h2>
             <p className="text-white/80 font-serif text-xl mb-12 font-bold">
               If you have received a VA decision that does not reflect the benefits you believe you earned, I am here to help.
             </p>
@@ -119,13 +115,9 @@ const Hero = () => {
           <span className="text-[#C9A84C] font-sans font-bold text-xl uppercase tracking-[0.2em] block mb-6">
             IF YOU SERVED - YOU DESERVE
           </span>
-          <h1 className="text-5xl font-serif font-bold text-[#C9A84C] mb-6">
-            You Served Your Country.
+          <h1 className="text-4xl font-serif font-bold text-[#2F3E2F] mb-8">
+            You Served Your Country. You Do Not Have to Navigate the VA Alone.
           </h1>
-
-          <h2 className="text-4xl font-serif font-bold text-[#2F3E2F] mb-8">
-            You Do Not Have to Navigate the VA Alone.
-          </h2>
 
           <p className="text-gray-600 mb-6 text-base font-bold">
             If you have received a VA decision that does not reflect the benefits you believe you earned, I am here to help.
@@ -690,110 +682,110 @@ Part of my role is to help you understand what to expect at each stage and to en
     }
   ];
 
-  return (
-    <section id="faq" className="py-[120px] bg-[#f8f7f4]">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-start">
+  // return (
+  //   <section id="faq" className="py-[120px] bg-[#f8f7f4]">
+  //     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-start">
 
-        {/* LEFT SIDE (Sticky on Desktop) */}
-        <div className="lg:sticky lg:top-32 h-fit">
-          <span className="text-[#C9A84C] uppercase tracking-[0.35em] text-sm font-semibold block mb-6">
-            Frequently Asked Questions
-          </span>
+  //       {/* LEFT SIDE (Sticky on Desktop) */}
+  //       <div className="lg:sticky lg:top-32 h-fit">
+  //         <span className="text-[#C9A84C] uppercase tracking-[0.35em] text-sm font-semibold block mb-6">
+  //           Frequently Asked Questions
+  //         </span>
 
-          <h2 className="text-[#2F3E2F] font-serif font-bold text-4xl md:text-5xl leading-tight mb-8">
-            Clear Answers.
-            <br />
-            <span className="text-[#C9A84C]">
-              Confident Decisions.
-            </span>
-          </h2>
+  //         <h2 className="text-[#2F3E2F] font-serif font-bold text-4xl md:text-5xl leading-tight mb-8">
+  //           Clear Answers.
+  //           <br />
+  //           <span className="text-[#C9A84C]">
+  //             Confident Decisions.
+  //           </span>
+  //         </h2>
 
-          <p className="text-[#555555] text-lg leading-relaxed max-w-md mb-8">
-            The VA appeals process can feel overwhelming. Below are answers to
-            common questions veterans ask before beginning an appeal.
-          </p>
+  //         <p className="text-[#555555] text-lg leading-relaxed max-w-md mb-8">
+  //           The VA appeals process can feel overwhelming. Below are answers to
+  //           common questions veterans ask before beginning an appeal.
+  //         </p>
 
-          <a
-            href="/faq"
-            className="inline-block bg-[#C9A84C] text-[#2F3E2F] font-bold px-6 py-3 hover:brightness-110 transition shadow-md"
-          >
-            View All FAQs
-          </a>
-        </div>
+  //         <a
+  //           href="/faq"
+  //           className="inline-block bg-[#C9A84C] text-[#2F3E2F] font-bold px-6 py-3 hover:brightness-110 transition shadow-md"
+  //         >
+  //           View All FAQs
+  //         </a>
+  //       </div>
 
-        {/* RIGHT SIDE FAQ LIST */}
-        <div className="space-y-4">
+  //       {/* RIGHT SIDE FAQ LIST */}
+  //       <div className="space-y-4">
 
-          {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
+  //         {faqs.map((faq, idx) => {
+  //           const isOpen = openIndex === idx;
 
-            return (
-              <div
-                key={idx}
-                className={`rounded-2xl border transition-all duration-500
-                  ${isOpen
-                    ? "bg-[#ffffff] border-[#C9A84C] shadow-lg"
-                    : "bg-white border-[#e8e6df] hover:border-[#C9A84C]/40"
-                  }`}
-              >
+  //           return (
+  //             <div
+  //               key={idx}
+  //               className={`rounded-2xl border transition-all duration-500
+  //                 ${isOpen
+  //                   ? "bg-[#ffffff] border-[#C9A84C] shadow-lg"
+  //                   : "bg-white border-[#e8e6df] hover:border-[#C9A84C]/40"
+  //                 }`}
+  //             >
 
-                <button
-                  onClick={() =>
-                    setOpenIndex(isOpen ? null : idx)
-                  }
-                  className="w-full flex items-center justify-between p-6 text-left"
-                >
-                  <div className="flex items-center gap-5">
+  //               <button
+  //                 onClick={() =>
+  //                   setOpenIndex(isOpen ? null : idx)
+  //                 }
+  //                 className="w-full flex items-center justify-between p-6 text-left"
+  //               >
+  //                 <div className="flex items-center gap-5">
 
-                    {/* Icon Bubble */}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center
-                      ${isOpen
-                        ? "bg-[#C9A84C] text-white"
-                        : "bg-[#2F3E2F]/5 text-[#C9A84C]"
-                      } transition-all duration-300`}>
-                      <HelpCircle size={18} />
-                    </div>
+  //                   {/* Icon Bubble */}
+  //                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center
+  //                     ${isOpen
+  //                       ? "bg-[#C9A84C] text-white"
+  //                       : "bg-[#2F3E2F]/5 text-[#C9A84C]"
+  //                     } transition-all duration-300`}>
+  //                     <HelpCircle size={18} />
+  //                   </div>
 
-                    {/* Question */}
-                    <span className="text-[#2F3E2F] font-semibold text-lg leading-snug">
-                      {faq.question}
-                    </span>
-                  </div>
+  //                   {/* Question */}
+  //                   <span className="text-[#2F3E2F] font-semibold text-lg leading-snug">
+  //                     {faq.question}
+  //                   </span>
+  //                 </div>
 
-                  {/* Chevron */}
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-[#C9A84C]"
-                  >
-                    <ChevronDown size={22} />
-                  </motion.div>
-                </button>
+  //                 {/* Chevron */}
+  //                 <motion.div
+  //                   animate={{ rotate: isOpen ? 180 : 0 }}
+  //                   transition={{ duration: 0.3 }}
+  //                   className="text-[#C9A84C]"
+  //                 >
+  //                   <ChevronDown size={22} />
+  //                 </motion.div>
+  //               </button>
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-20 pb-8 text-[#555555] leading-relaxed whitespace-pre-line">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+  //               <AnimatePresence>
+  //                 {isOpen && (
+  //                   <motion.div
+  //                     initial={{ height: 0, opacity: 0 }}
+  //                     animate={{ height: "auto", opacity: 1 }}
+  //                     exit={{ height: 0, opacity: 0 }}
+  //                     transition={{ duration: 0.35 }}
+  //                     className="overflow-hidden"
+  //                   >
+  //                     <div className="px-20 pb-8 text-[#555555] leading-relaxed whitespace-pre-line">
+  //                       {faq.answer}
+  //                     </div>
+  //                   </motion.div>
+  //                 )}
+  //               </AnimatePresence>
 
-              </div>
-            );
-          })}
+  //             </div>
+  //           );
+  //         })}
 
-        </div>
-      </div>
-    </section>
-  );
+  //       </div>
+  //     </div>
+  //   </section>
+  // );
 };
 
 const Contact = () => {

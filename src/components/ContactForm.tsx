@@ -1,50 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
-
-const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY;
-
-const Recaptcha: React.FC<{
-  onChange: (token: string | null) => void;
-  resetSignal: number;
-}> = ({ onChange, resetSignal }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    let cancelled = false;
-    const tryRender = () => {
-      if (cancelled || widgetIdRef.current !== null) return;
-      if (!window.grecaptcha || !containerRef.current) {
-        setTimeout(tryRender, 200);
-        return;
-      }
-      widgetIdRef.current = window.grecaptcha.render(containerRef.current, {
-        sitekey: RECAPTCHA_SITE_KEY || '',
-        callback: (token) => onChange(token),
-        'expired-callback': () => onChange(null),
-      });
-    };
-    tryRender();
-
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (resetSignal > 0 && widgetIdRef.current !== null && window.grecaptcha) {
-      window.grecaptcha.reset(widgetIdRef.current);
-      onChange(null);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetSignal]);
-
-  return <div ref={containerRef} />;
-};
 
 type FormMode = 'single' | 'multistep';
 
@@ -119,8 +75,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
 
   const set = (field: keyof FormData, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -137,18 +91,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!captchaToken) {
-      setStatus('error');
-      setErrorMsg('Please complete the reCAPTCHA verification.');
-      return;
-    }
     setStatus('loading');
     setErrorMsg('');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, captchaToken }),
+        body: JSON.stringify(form),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Something went wrong');
@@ -156,8 +105,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
     } catch (err: unknown) {
       setStatus('error');
       setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
-      setCaptchaToken(null);
-      setCaptchaResetSignal((n) => n + 1);
     }
   };
 
@@ -414,17 +361,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
           </select>
         </div>
 
-        <div>
-          <Recaptcha onChange={setCaptchaToken} resetSignal={captchaResetSignal} />
-        </div>
-
         {status === 'error' && (
           <p className="text-red-600 text-sm">{errorMsg}</p>
         )}
 
         <button
           type="submit"
-          disabled={status === 'loading' || !captchaToken}
+          disabled={status === 'loading'}
           className="w-full bg-luxury-gold text-deep-olive font-bold py-4 uppercase tracking-widest shadow-lg hover:brightness-110 transition disabled:opacity-60"
         >
           {status === 'loading' ? 'Sending…' : 'Request Free Case Review'}
@@ -742,10 +685,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
               </select>
             </div>
 
-            <div>
-              <Recaptcha onChange={setCaptchaToken} resetSignal={captchaResetSignal} />
-            </div>
-
             {status === 'error' && (
               <p className="text-red-600 text-sm">{errorMsg}</p>
             )}
@@ -760,7 +699,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ mode = 'single' }) => {
               </button>
               <button
                 type="submit"
-                disabled={status === 'loading' || !captchaToken}
+                disabled={status === 'loading'}
                 className="bg-deep-olive text-white px-6 py-3 rounded-full hover:shadow-xl transition w-full sm:w-auto disabled:opacity-60"
               >
                 {status === 'loading' ? 'Sending…' : 'Submit Pre-Consultation Questionnaire'}

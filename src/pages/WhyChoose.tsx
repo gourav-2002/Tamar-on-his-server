@@ -76,10 +76,11 @@ const WhyChoose = () => {
       <main className="bg-off-white overflow-hidden pt-24">
         
         {/* Top Hero Section */}
-        <section className="relative px-6 pt-16 pb-20">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Content */}
+        <section
+          className="relative hidden lg:block bg-cover bg-center py-24"
+          style={{ backgroundImage: "url('/why-choose-hero-laptop.webp')" }}
+        >
+          <div className="max-w-7xl mx-auto px-6">
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -92,29 +93,44 @@ const WhyChoose = () => {
               <motion.h1 variants={itemVariants} className="text-deep-olive font-serif font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-8">
                 TAMAR DYSON LEGAL SERVICES
               </motion.h1>
-              
+
               <motion.div variants={itemVariants} className="w-24 h-1 bg-luxury-gold/50 mb-8"></motion.div>
-              
+
               <motion.p variants={itemVariants} className="text-deep-olive/80 font-serif text-2xl leading-relaxed">
                 As a veteran, I understand what it means to serve our country. As an attorney, I maintain a boutique practice by choice. I am selective about the cases I take; I focus on veterans with complicated appeals requiring thoughtful legal analysis and seasoned judgment.
               </motion.p>
             </motion.div>
+          </div>
+        </section>
 
-            {/* Right Image */}
-            <motion.div 
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="relative flex justify-center lg:justify-end"
-            >
+        {/* Top Hero Section - Mobile */}
+        <section className="lg:hidden px-6 pt-10 pb-16">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span variants={itemVariants} className="text-luxury-gold font-sans font-bold text-xs uppercase tracking-[0.2em] mb-4 block">
+              WHY VETERANS CHOOSE
+            </motion.span>
+            <motion.h1 variants={itemVariants} className="text-deep-olive font-serif font-bold text-4xl leading-[1.1] mb-6">
+              TAMAR DYSON LEGAL SERVICES
+            </motion.h1>
+
+            <motion.div variants={itemVariants} className="w-20 h-1 bg-luxury-gold/50 mb-6"></motion.div>
+
+            <motion.p variants={itemVariants} className="text-deep-olive/80 font-serif text-lg leading-relaxed mb-8">
+              As a veteran, I understand what it means to serve our country. As an attorney, I maintain a boutique practice by choice. I am selective about the cases I take; I focus on veterans with complicated appeals requiring thoughtful legal analysis and seasoned judgment.
+            </motion.p>
+
+            <motion.div variants={itemVariants}>
               <img
                 src="/about-hero.jpg"
                 alt="Tamar Dyson"
-                className="w-full max-w-md object-cover rounded-md shadow-2xl"
+                className="w-full object-cover rounded-md shadow-xl"
               />
             </motion.div>
-            
-          </div>
+          </motion.div>
         </section>
 
         {/* Value Proposition Cards */}
